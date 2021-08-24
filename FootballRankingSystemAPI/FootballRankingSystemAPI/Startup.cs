@@ -1,3 +1,6 @@
+using FootballRankingSystemAPI.Entities;
+using FootballRankingSystemAPI.Seeders;
+using FootballRankingSystemAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,8 +29,12 @@ namespace FootballRankingSystemAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            services.AddScoped<TeamSeeder>();
+            services.AddScoped<ISimulationService, SimulationService>();
+            services.AddDbContext<RankingDbContext>();
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FootballRankingSystemAPI", Version = "v1" });
@@ -35,8 +42,10 @@ namespace FootballRankingSystemAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TeamSeeder teamSeeder)
         {
+            teamSeeder.Seed();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
