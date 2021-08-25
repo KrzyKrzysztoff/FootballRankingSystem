@@ -1,4 +1,5 @@
 ﻿using FootballRankingSystemAPI.Entities;
+using FootballRankingSystemAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,17 +8,29 @@ using System.Threading.Tasks;
 
 namespace FootballRankingSystemAPI.Controllers
 {
+
+    [ApiController]
+    [Route("api/ranking")]
     public class RankingController : Controller
     {
-      
+        private readonly IRankingService rankingService;
 
-        public RankingController(RankingDbContext rankingDbContext)
+        public RankingController(IRankingService rankingService)
         {
-         
+            this.rankingService = rankingService;
         }
-        public IActionResult Get()
+
+        [HttpGet("getAll")]
+        public ActionResult GetAll()
         {
-            return View();
+            var teams = rankingService.GetAll();
+
+            if (teams == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(teams);
         }
     }
 }

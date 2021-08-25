@@ -105,7 +105,7 @@ namespace FootballRankingSystemAPI.Seeders
                 new Team{Name = "Denmark", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1642,RankingPlace = 11},
                 new Team{Name = "Netherlands", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1637, RankingPlace = 12},
                 new Team{Name = "Uruguay", Confederation = FindConfederation(ConfederationEnum.CONMEBOL), Points = 1635,RankingPlace = 13},
-                new Team{Name = "Switzerland", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1822,RankingPlace = 14},
+                new Team{Name = "Switzerland", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1622,RankingPlace = 14},
                 new Team{Name = "Colombia", Confederation = FindConfederation(ConfederationEnum.CONMEBOL), Points = 1618, RankingPlace = 15},
                 new Team{Name = "Germany", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1613, RankingPlace = 16},
                 new Team{Name = "Sweden", Confederation = FindConfederation(ConfederationEnum.UEFA), Points = 1607, RankingPlace = 17},

@@ -54,6 +54,8 @@ namespace FootballRankingSystemAPI.Services
 
                 AddPoints(teamX, teamY, matchResult, false, matchStatus);
 
+                SortTable();
+
                 return matchResult;
             }
             else if (result > teamY.Chance && teamY.Chance + 1 >= result)
@@ -61,6 +63,8 @@ namespace FootballRankingSystemAPI.Services
                 var matchResult = GetMatchResult(teamY, teamX, true);
 
                 AddPoints(teamX, teamY, matchResult, true, matchStatus);
+
+                SortTable();
 
                 return matchResult;
             }
@@ -70,10 +74,26 @@ namespace FootballRankingSystemAPI.Services
 
                 AddPoints(teamY, teamX, matchResult, false, matchStatus);
 
+                SortTable();
+
                 return matchResult;
             }
 
             return null;
+
+        }
+
+        private void SortTable()
+        {
+
+            var teams = rankingDbContext.Team.OrderByDescending(x => x.Points).ToList();
+
+            for (int i = 0; i < teams.Count; i++)
+            {
+                teams[i].RankingPlace = i+1; 
+            }
+
+            rankingDbContext.SaveChanges();
 
         }
 
@@ -236,6 +256,8 @@ namespace FootballRankingSystemAPI.Services
 
                 matchResult.TeamLostOrDrawPointsScored = loserPointsScored;
                 matchResult.TeamWinOrDrawPointsScored = winnerPointsScored;
+
+              
 
             }
             else

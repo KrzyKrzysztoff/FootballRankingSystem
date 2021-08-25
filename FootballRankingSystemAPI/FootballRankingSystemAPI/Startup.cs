@@ -31,6 +31,7 @@ namespace FootballRankingSystemAPI
         {
             services.AddScoped<TeamSeeder>();
             services.AddScoped<ISimulationService, SimulationService>();
+            services.AddScoped<IRankingService, RankingService>();
             services.AddDbContext<RankingDbContext>();
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
