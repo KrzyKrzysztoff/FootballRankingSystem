@@ -31,7 +31,7 @@ namespace FootballRankingSystemAPI.Services
                 teamDtoList.Add(teamDto);
             }
 
-            var teamDtoListSorted = teamDtoList.OrderByDescending(x => x.RankingPlace).ToList();
+            var teamDtoListSorted = teamDtoList.OrderBy(x => x.RankingPlace).ToList();
 
             return teamDtoListSorted;
 

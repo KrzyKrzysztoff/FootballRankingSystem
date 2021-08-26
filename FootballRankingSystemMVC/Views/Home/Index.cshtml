@@ -1,8 +1,32 @@
-﻿@{
+﻿@model List<RankingViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Football Ranking</h1>
 </div>
+<table class="table">
+
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Ranking place</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Points</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@item.RankingPlace</td>
+                <td>@item.Name</td>
+                <td>@Convert.ToInt32(item.Points)</td>
+            </tr>
+        </tbody>
+    }
+</table>
+
+

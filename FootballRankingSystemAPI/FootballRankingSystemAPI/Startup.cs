@@ -30,6 +30,7 @@ namespace FootballRankingSystemAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<TeamSeeder>();
+            services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<ISimulationService, SimulationService>();
             services.AddScoped<IRankingService, RankingService>();
             services.AddDbContext<RankingDbContext>();
@@ -53,6 +54,7 @@ namespace FootballRankingSystemAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FootballRankingSystemAPI v1"));
             }
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

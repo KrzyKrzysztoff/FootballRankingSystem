@@ -1,0 +1,10 @@
+﻿@model TeamViewModel
+
+
+
+<form asp-controller="Home" asp-action="SaveEmployee">
+    <select asp-for="TeamX"
+            asp-items="@(new SelectList(Model.Teams, null, "Name"))">
+        <option>Please select one</option>
+    </select>
+</form>

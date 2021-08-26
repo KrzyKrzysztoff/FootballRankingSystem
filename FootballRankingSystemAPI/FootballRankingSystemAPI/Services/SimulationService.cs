@@ -111,6 +111,7 @@ namespace FootballRankingSystemAPI.Services
             {
                 goalsScoredByWinTeam = (int)teamLost.Chance;
                 goalsScoredByLoseTeam = goalsScoredByWinTeam;
+                goalsScoredByWinTeam = goalsScoredByLoseTeam;
 
                 var result = SetMatchResult(goalsScoredByWinTeam, goalsScoredByLoseTeam, teamWin, teamLost, true);
 
@@ -135,13 +136,15 @@ namespace FootballRankingSystemAPI.Services
                 else
                 {
                     int chancesDifference = (int)teamLost.Chance - (int)teamWin.Chance;
-
+                    //here is problem to repair sometimes return draw
                     if (chancesDifference <= 2)
                     {
                         chancesDifference = 2;
 
                         goalsScoredByWinTeam = chancesDifference;
                         goalsScoredByLoseTeam = (int)teamWin.Chance;
+
+                        CheckGoalScored(ref goalsScoredByLoseTeam, ref goalsScoredByWinTeam);
 
                         var result = SetMatchResult(goalsScoredByWinTeam, goalsScoredByLoseTeam, teamWin, teamLost, false);
 
@@ -153,6 +156,8 @@ namespace FootballRankingSystemAPI.Services
                     {
                         goalsScoredByWinTeam = chancesDifference;
                         goalsScoredByLoseTeam = (int)teamWin.Chance;
+
+                        CheckGoalScored(ref goalsScoredByLoseTeam, ref goalsScoredByWinTeam);
 
                         var result = SetMatchResult(goalsScoredByWinTeam, goalsScoredByLoseTeam, teamWin, teamLost, false);
 
@@ -169,6 +174,8 @@ namespace FootballRankingSystemAPI.Services
                 goalsScoredByWinTeam = (int)teamWin.Chance;
                 goalsScoredByLoseTeam = (int)teamLost.Chance;
 
+                CheckGoalScored(ref goalsScoredByLoseTeam, ref goalsScoredByWinTeam);
+
                 var result = SetMatchResult(goalsScoredByWinTeam, goalsScoredByLoseTeam, teamWin, teamLost, false);
 
                 ChanceReset(teamWin, teamLost);
@@ -180,6 +187,8 @@ namespace FootballRankingSystemAPI.Services
             {
                 goalsScoredByWinTeam = (int)teamWin.Chance + 1;
                 goalsScoredByLoseTeam = (int)teamLost.Chance;
+
+                CheckGoalScored(ref goalsScoredByLoseTeam, ref goalsScoredByWinTeam);
 
                 var result = SetMatchResult(goalsScoredByWinTeam, goalsScoredByLoseTeam, teamWin, teamLost, false);
 
@@ -329,6 +338,23 @@ namespace FootballRankingSystemAPI.Services
             if (teamX.Chance <= 0.99)
             {
                 teamX.Chance = 1;
+            }
+        }
+
+        private void CheckGoalScored(ref int  goalsScoredByLoseTeam, ref int goalsScoredByWinTeam)
+        {
+            if (goalsScoredByLoseTeam == goalsScoredByWinTeam)
+            {
+                ++goalsScoredByWinTeam;
+            }
+            if (goalsScoredByLoseTeam > goalsScoredByWinTeam)
+            {
+                int goals = goalsScoredByLoseTeam;
+
+                goalsScoredByLoseTeam = goalsScoredByWinTeam;
+
+                goalsScoredByWinTeam = goals;
+               
             }
         }
     }

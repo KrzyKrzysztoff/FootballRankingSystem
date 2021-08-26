@@ -1,4 +1,5 @@
 ﻿using FootballRankingSystemMVC.Models;
+using FootballRankingSystemMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,20 +13,28 @@ namespace FootballRankingSystemMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRankingService rankingService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,  IRankingService rankingService)
         {
             _logger = logger;
+            this.rankingService = rankingService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var teamList = await rankingService.GetRanking();
+
+            return View(teamList);
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public async Task<IActionResult> Simulation()
         {
-            return View();
+            var nationalityList = await rankingService.GetNationalityName();
+
+            return View(nationalityList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

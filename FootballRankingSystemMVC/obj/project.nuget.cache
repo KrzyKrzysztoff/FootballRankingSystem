@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zlLoZZtEEBz11H2RtrV6q/CHLEzlpndCNM3do5PVpdCDABXGNoQVLAVVi4Ofhk7IgRVyS5W5AixH8D0diBuJzw==",
+  "dgSpecHash": "m/Q1Uapwhw5o15Q0yYNyd92TNhwOt2Kc+K/bv0ACGvqBbG5dOHfXubBbwSfUARUiVD/oWf+nLmnPzzllEJvXOQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\krzys\\Desktop\\FootballRankingSystem\\FootballRankingSystemMVC\\FootballRankingSystemMVC.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\krzys\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
