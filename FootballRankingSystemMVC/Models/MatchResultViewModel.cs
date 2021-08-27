@@ -7,9 +7,14 @@ namespace FootballRankingSystemMVC.Models
 {
     public class MatchResultViewModel
     {
-        public string NameTeamX { get; set; }
-        public string NameTeamY { get; set; }
-        public List<TeamViewModel> Teams{ get; set; }
+        public DateTime Date { get; set; }
+        public int GoalsScoredByWinTeam { get; set; }
+        public int GoalsScoredByLoseTeam { get; set; }
+        public bool IsDraw { get; set; }
+        public string TeamWinOrDrawName { get; set; }
+        public string TeamLostOrDrawName { get; set; }
+        public double TeamWinOrDrawPointsScored { get; set; }
+        public double TeamLostOrDrawPointsScored { get; set; }
 
     }
 }

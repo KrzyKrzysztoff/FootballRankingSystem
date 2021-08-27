@@ -1,0 +1,33 @@
+﻿@model MatchResultViewModel
+
+@{
+    ViewData["Title"] = "Match result Page";
+}
+
+<div class="d-flex justify-content-center">
+    <h1 class="btn btn-success">@Model.TeamWinOrDrawName</h1>
+    <h2 class="btn btn-info">@Model.GoalsScoredByWinTeam - @Model.GoalsScoredByLoseTeam</h2>
+    @if (!Model.IsDraw)
+    {
+        <h1 class="btn btn-danger">@Model.TeamLostOrDrawName</h1>
+    }
+    else
+    {
+        <h1 class="btn btn-success">@Model.TeamLostOrDrawName</h1>
+    }
+</div>
+
+@if (!Model.IsDraw)
+{
+    <div class="card card-body">
+        Date of the match: @Model.Date |
+        Points scored by the winners: @Convert.ToInt32(Model.TeamWinOrDrawPointsScored) | Points scored by the loser: @Model.TeamLostOrDrawPointsScored
+    </div>
+}
+else
+{
+    <div class="card card-body">
+        Date of the match: @Model.Date |
+        Points scored by the teams: @Convert.ToInt32(Model.TeamWinOrDrawPointsScored)
+    </div>
+}

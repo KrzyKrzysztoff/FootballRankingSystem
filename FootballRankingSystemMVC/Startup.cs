@@ -25,7 +25,7 @@ namespace FootballRankingSystemMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRankingService, RankingService>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +45,6 @@ namespace FootballRankingSystemMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

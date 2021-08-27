@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 
@@ -12,7 +13,6 @@ namespace FootballRankingSystemMVC.Services
     public class RankingService : IRankingService
     {
         List<RankingViewModel> rankingViewModels = new List<RankingViewModel>();
-
 
         public async Task<List<RankingViewModel>> GetRanking()
         {
@@ -31,6 +31,7 @@ namespace FootballRankingSystemMVC.Services
 
         public async Task<TeamViewModel> GetNationalityName()
         {
+
             var teamViewModel = new TeamViewModel();
 
             var teamList = await GetRanking();
@@ -47,6 +48,36 @@ namespace FootballRankingSystemMVC.Services
             return teamViewModel;
         }
 
+        public List<MatchStatus> GetMatchStatus()
+        {
+            List<MatchStatus> matchStatusList = new List<MatchStatus>()
+            {
+                new MatchStatus { Name = "FifaWorldFinal"},
+                new MatchStatus { Name = "ContinentalCupFinal"},
+                new MatchStatus { Name = "FifaWorld_ContinentalCup"},
+                new MatchStatus { Name = "FriendlyMatch"},
+            };
+
+            return matchStatusList;
+        }
+
+        public async Task<MatchResultViewModel> CreateSimulation(SimulationDto simulationDto)
+        {
+            MatchResultViewModel matchResultViewModel = new MatchResultViewModel();
+            
+            using (var httpClinet = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(simulationDto), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClinet.PostAsync("https://localhost:5001/api/simulation/create", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    matchResultViewModel = JsonConvert.DeserializeObject<MatchResultViewModel>(apiResponse);
+                }
+            }
+
+            return matchResultViewModel;
+        }
     }
 
 }

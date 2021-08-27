@@ -10,5 +10,7 @@ namespace FootballRankingSystemMVC.Services
     {
         Task<List<RankingViewModel>> GetRanking();
         Task<TeamViewModel> GetNationalityName();
+        List<MatchStatus> GetMatchStatus();
+        Task<MatchResultViewModel> CreateSimulation(SimulationDto simulationDto);
     }
 }

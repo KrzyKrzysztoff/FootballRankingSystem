@@ -1,10 +1,32 @@
 ﻿@model TeamViewModel
 
+@{
+    ViewData["Title"] = "Simulation Page";
+}
 
+<div class="text-center">
+    <h1 class="display-4">Simulation</h1>
+</div>
 
-<form asp-controller="Home" asp-action="SaveEmployee">
-    <select asp-for="TeamX"
-            asp-items="@(new SelectList(Model.Teams, null, "Name"))">
-        <option>Please select one</option>
-    </select>
+<form class="form-select" method="post" asp-controller="Home" asp-action="Simulation">
+
+    <div class="text-center">
+        <select asp-for="TeamX"
+                asp-items="@(new SelectList(Model.Teams, null, "Name"))">
+            <option>Please select first nationality</option>
+        </select>
+
+        <select asp-for="TeamY"
+                asp-items="@(new SelectList(Model.Teams, null, "Name"))">
+            <option>Please select second nationality</option>
+        </select>
+
+        <select asp-for="MatchStatusName"
+                asp-items="@(new SelectList(Model.MatchStatus, null, "Name"))">
+            <option>Please select match status</option>
+        </select>
+    </div>
+    <div style="margin-top:2%" class="text-center">
+        <button type="submit" class="btn btn-secondary">Simulate</button>
+    </div>
 </form>

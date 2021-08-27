@@ -32,10 +32,34 @@ namespace FootballRankingSystemMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Simulation()
         {
-            var nationalityList = await rankingService.GetNationalityName();
+            var teamViewModelList = await rankingService.GetNationalityName();
 
-            return View(nationalityList);
+            teamViewModelList.MatchStatus = rankingService.GetMatchStatus();
+
+            return View(teamViewModelList);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Simulation(TeamViewModel teamViewModel)
+        {
+            SimulationDto simulationDto = new SimulationDto()
+            {
+                MatchStatusName = teamViewModel.MatchStatusName,
+                NameTeamX = teamViewModel.TeamX,
+                NameTeamY = teamViewModel.TeamY
+            };
+
+            var matchResult = await rankingService.CreateSimulation(simulationDto);
+
+            return RedirectToAction("MatchResult", matchResult);
+        }
+        
+        [HttpGet]
+        public IActionResult MatchResult(MatchResultViewModel matchResult)
+        {
+            return View(matchResult);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
