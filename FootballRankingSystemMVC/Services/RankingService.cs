@@ -64,7 +64,7 @@ namespace FootballRankingSystemMVC.Services
         public async Task<MatchResultViewModel> CreateSimulation(SimulationDto simulationDto)
         {
             MatchResultViewModel matchResultViewModel = new MatchResultViewModel();
-            
+
             using (var httpClinet = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(simulationDto), Encoding.UTF8, "application/json");
@@ -77,6 +77,7 @@ namespace FootballRankingSystemMVC.Services
             }
 
             return matchResultViewModel;
+
         }
     }
 

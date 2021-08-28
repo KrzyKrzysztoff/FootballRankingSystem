@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yp4z3Jyimw01q06cMNp7I8w+3IuTuR/GSRYFPfYtR1p8nWwJqOjGRuSk0huBdLUA3QDYlZa6xeljFsZ8msxb8g==",
+  "dgSpecHash": "creuQ+8TgkX99dDhEMQg4Xl5AQBzPw2zO1o5GD4MypHSp3UUYnWUvqjjnqzXeBZ64PvQ6OF0SQmILWINXI48+Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\krzys\\Desktop\\FootballRankingSystem\\FootballRankingSystemMVC\\FootballRankingSystemMVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\krzys\\.nuget\\packages\\microsoft.applicationinsights\\2.18.0\\microsoft.applicationinsights.2.18.0.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.9.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.9\\microsoft.aspnetcore.razor.language.5.0.9.nupkg.sha512",
@@ -15,6 +16,7 @@
     "C:\\Users\\krzys\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
+    "C:\\Users\\krzys\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\system.reflection.metadata\\5.0.0\\system.reflection.metadata.5.0.0.nupkg.sha512",
     "C:\\Users\\krzys\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",

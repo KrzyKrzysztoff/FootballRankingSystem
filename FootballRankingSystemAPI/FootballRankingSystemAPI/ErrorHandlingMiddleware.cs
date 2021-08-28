@@ -1,5 +1,7 @@
 ﻿using FootballRankingSystemAPI.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,19 @@ namespace FootballRankingSystemAPI
             }
             catch(NotFoundException notFoundException)
             {
+             
+
+                var result = JsonConvert.SerializeObject(new { error = notFoundException.Message });
+                context.Response.ContentType = "application/json";
+               
+
                 context.Response.StatusCode = 404;
-                throw new NotFoundException(notFoundException.Message);
+                await context.Response.WriteAsJsonAsync(notFoundException.Message);
             }
             catch (Exception ex)
             {
                 context.Response.StatusCode = 500;
-                throw new Exception(ex.Message);
+                await context.Response.WriteAsync(ex.Message);
             }
         }
     }

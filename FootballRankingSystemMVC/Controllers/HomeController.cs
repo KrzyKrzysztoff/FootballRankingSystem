@@ -32,16 +32,18 @@ namespace FootballRankingSystemMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Simulation()
         {
-            var teamViewModelList = await rankingService.GetNationalityName();
 
-            teamViewModelList.MatchStatus = rankingService.GetMatchStatus();
+                var teamViewModelList = await rankingService.GetNationalityName();
 
-            return View(teamViewModelList);
+                teamViewModelList.MatchStatus = rankingService.GetMatchStatus();
+
+                return View(teamViewModelList);
         }
 
         [HttpPost]
         public async Task<IActionResult> Simulation(TeamViewModel teamViewModel)
         {
+            
             SimulationDto simulationDto = new SimulationDto()
             {
                 MatchStatusName = teamViewModel.MatchStatusName,
@@ -50,8 +52,8 @@ namespace FootballRankingSystemMVC.Controllers
             };
 
             var matchResult = await rankingService.CreateSimulation(simulationDto);
-
             return RedirectToAction("MatchResult", matchResult);
+           
         }
         
         [HttpGet]
@@ -61,9 +63,11 @@ namespace FootballRankingSystemMVC.Controllers
         }
 
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+       [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+       [Route("error")]
         public IActionResult Error()
         {
+           
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
